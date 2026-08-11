@@ -1,0 +1,39 @@
+{
+  "skill_name": "clash-wecom-login-fix",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "关闭 Clash 时，企业微信商户后台会自动弹出桌面认证；一打开 Clash 就只剩扫码。帮我定位原因并给出最小改法。",
+      "expected_output": "Explains the likely clash between Windows system proxy, fake-ip, and the WeCom local bridge; points to Merge.yaml and Verge settings; gives a minimal fix.",
+      "files": [],
+      "expectations": [
+        "Mentions localhost.work.weixin.qq.com",
+        "Mentions dns.fake-ip-filter or fake-ip filtering",
+        "Mentions system proxy bypass or Windows proxy bypass",
+        "Advises not to edit the generated clash-verge.yaml directly"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我现在用 Clash Verge Rev，企微登录页一直进二维码，帮我检查该改哪个配置文件、怎么确认是不是本机桥接端口被挡了。",
+      "expected_output": "Identifies Merge.yaml/verge.yaml as the relevant files and suggests checking local ports 50010/50011/50012 and the Clash log.",
+      "files": [],
+      "expectations": [
+        "Mentions local ports 50010, 50011, or 50012",
+        "Mentions checking Clash logs",
+        "Mentions Merge.yaml as the place to override dns.fake-ip-filter"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "商户后台登录时，login.work.weixin.qq.com 还是被代理了，怎么把企业微信相关域名都稳定绕过？",
+      "expected_output": "Provides the enterprise WeCom bypass domain list and a concise config snippet for Verge / Windows proxy bypass.",
+      "files": [],
+      "expectations": [
+        "Includes login.work.weixin.qq.com",
+        "Includes open.work.weixin.qq.com or wwcdn.weixin.qq.com",
+        "Includes a semicolon-separated system_proxy_bypass example"
+      ]
+    }
+  ]
+}
