@@ -7,4 +7,9 @@ foreach ($extension in @(".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".gif
     }
 }
 
-Write-Host "已移除图片右键“压缩图片”菜单。原图和已生成的压缩文件不会被删除。"
+$pdfVerbPath = "HKCU:\Software\Classes\SystemFileAssociations\.pdf\shell\PdfCompressor"
+if (Test-Path -LiteralPath $pdfVerbPath) {
+    Remove-Item -LiteralPath $pdfVerbPath -Recurse -Force
+}
+
+Write-Host "已移除图片和 PDF 右键压缩菜单。原图和已生成的压缩文件不会被删除。"
